@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import { ChangeEvent, useState } from 'react';
 import './App.css';
+import Counter from './components/Counter/Counter';
+import Users from './components/Users/Users';
+import CheckBoxes from './components/CheckBoxes/CheckBoxes';
 
 function App() {
+  const [option, setOption] = useState<string>('welcome');
+
+  let component = <Users />;
+  switch (option) {
+    case 'welcome':
+      component = <Users />;
+      break;
+    case 'counter':
+      component = <Counter />;
+      break;
+    case 'checkboxes':
+      component = <CheckBoxes />;
+      break;
+  }
+
+  const handleSelection = (e: ChangeEvent<HTMLSelectElement>) => {
+    setOption(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ fontFamily: 'Times New Roman' }}>
+      <div style={{ marginBottom: '15px' }}>
+        <select className="select-box" onChange={handleSelection}>
+          <option value="welcome">Welcome</option>
+          <option value="counter">Counter</option>
+          <option value="checkboxes">Checkboxes</option>
+        </select>
+        <p style={{ margin: 0 }}>Option selected: {option}</p>
+      </div>
+
+      {component}
     </div>
   );
 }
