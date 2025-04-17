@@ -1,24 +1,19 @@
 import { ChangeEvent, useState } from 'react';
 import './CheckBoxes.css';
-
-interface IInterest {
-  coding: boolean;
-  music: boolean;
-  reading: boolean;
-}
+import IInterest from '../../types/interest.type';
 
 function CheckBoxes() {
-  const intitialInterests: IInterest = {
+  const intitialInterest: IInterest = {
     coding: false,
     music: false,
     reading: false,
   };
 
-  const [interests, setInterests] = useState<IInterest>(intitialInterests);
+  const [interest, setInterests] = useState<IInterest>(intitialInterest);
 
   const handleCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
     setInterests({
-      ...interests,
+      ...interest,
       [e.target.name]: e.target.checked,
     });
   };
@@ -51,7 +46,7 @@ function CheckBoxes() {
           id="coding"
           name="coding"
           value="coding"
-          checked={interests.coding}
+          checked={interest.coding}
         />
         <label htmlFor="coding">Coding</label>
       </div>
@@ -62,7 +57,7 @@ function CheckBoxes() {
           id="music"
           name="music"
           value="music"
-          checked={interests.music}
+          checked={interest.music}
         />
         <label htmlFor="music">Music</label>
       </div>
@@ -73,12 +68,12 @@ function CheckBoxes() {
           id="reading"
           name="reading"
           value="reading"
-          checked={interests.reading}
+          checked={interest.reading}
         />
         <label htmlFor="reading">Reading</label>
       </div>
       <p style={{ margin: '10px 0 0 0' }}>You selected:</p>
-      <p style={{ margin: 0 }}>{JSON.stringify(interests)}</p>
+      <p style={{ margin: 0 }}>{JSON.stringify(interest)}</p>
     </div>
   );
 }
