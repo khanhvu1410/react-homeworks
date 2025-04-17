@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './components/Counter/Counter';
 import Users from './components/Users/Users';
 import CheckBoxes from './components/CheckBoxes/CheckBoxes';
+import Pokemon from './components/Pokemon/Pokemon';
 
 function App() {
   const [option, setOption] = useState<string>('welcome');
@@ -18,6 +19,9 @@ function App() {
     case 'checkboxes':
       component = <CheckBoxes />;
       break;
+    case 'pokemon':
+      component = <Pokemon />;
+      break;
   }
 
   const handleSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -31,6 +35,7 @@ function App() {
           <option value="welcome">Welcome</option>
           <option value="counter">Counter</option>
           <option value="checkboxes">Checkboxes</option>
+          <option value="pokemon">Pokemon</option>
         </select>
         <p style={{ margin: 0 }}>Option selected: {option}</p>
       </div>

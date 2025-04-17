@@ -1,0 +1,14 @@
+.poke-box {
+  margin-bottom: 15px;
+}
+
+.poke-id,
+.poke-name,
+.poke-weight {
+  margin: 0;
+}
+
+.poke-image {
+  width: 100px;
+  height: 100px;
+}

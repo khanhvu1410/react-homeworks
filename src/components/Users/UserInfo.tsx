@@ -1,12 +1,7 @@
+import IUserInfo from '../../types/user.type';
 import './UserInfo.css';
 
-interface IUser {
-  name: string;
-  age: number;
-  backgroundColor: string;
-}
-
-function UserInfo(props: IUser) {
+function UserInfo(props: IUserInfo) {
   const nameElement = <p className="name">Name: {props.name}</p>;
   const ageElement = <p className="age">Age: {props.age}</p>;
 
