@@ -1,4 +1,4 @@
-interface IPokeInfo {
+interface PokeInfo {
   id: number;
   name: string;
   weight: number;
@@ -6,4 +6,4 @@ interface IPokeInfo {
   backImage: string;
 }
 
-export default IPokeInfo;
+export default PokeInfo;

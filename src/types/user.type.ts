@@ -1,7 +1,7 @@
-interface IUserInfo {
+interface UserInfo {
   name: string;
   age: number;
   backgroundColor: string;
 }
 
-export default IUserInfo;
+export default UserInfo;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import PokeInfo from './PokeInfo';
-import IPokeInfo from '../../types/pokemon.type';
+import PokeInfo from '../../types/pokemon.type';
+import PokeDetail from './PokeDetail';
 
 function Pokemon() {
-  const initialInfo: IPokeInfo = {
+  const initialInfo: PokeInfo = {
     id: 0,
     name: '',
     weight: 0,
@@ -12,7 +12,10 @@ function Pokemon() {
   };
 
   const [id, setId] = useState<number>(1);
-  const [info, setInfo] = useState<IPokeInfo>(initialInfo);
+  const [info, setInfo] = useState<PokeInfo>(initialInfo);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handlePrevious = () => {
     setId(id - 1);
@@ -21,10 +24,26 @@ function Pokemon() {
     setId(id + 1);
   };
 
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const handleDisplayContent = () => {
+    if (isError) {
+      return <p>{errorMessage}</p>;
+    }
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+    return (
+      <PokeDetail
+        id={info.id}
+        name={info.name}
+        weight={info.weight}
+        frontImage={info.frontImage}
+        backImage={info.backImage}
+      />
+    );
+  };
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((response) => response.json())
       .then((pokeInfo) => {
@@ -40,26 +59,17 @@ function Pokemon() {
       .catch((error) => {
         setIsError(true);
         setErrorMessage(error.toString());
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       });
   }, [id]);
 
-  let component1 = (
-    <PokeInfo
-      id={info.id}
-      name={info.name}
-      weight={info.weight}
-      frontImage={info.frontImage}
-      backImage={info.backImage}
-    />
-  );
-
-  if (isError) {
-    component1 = <p>{errorMessage}</p>;
-  }
-
   return (
     <div>
-      {component1}
+      {handleDisplayContent()}
       <div style={{ paddingLeft: '15px' }}>
         <button onClick={handlePrevious} style={{ marginRight: '30px' }}>
           Previous

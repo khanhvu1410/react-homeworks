@@ -1,26 +1,30 @@
 import { ChangeEvent, useState } from 'react';
 import './App.css';
 import Counter from './components/Counter/Counter';
-import Users from './components/Users/Users';
-import CheckBoxes from './components/CheckBoxes/CheckBoxes';
+import CheckBoxesList from './components/CheckBox/CheckBoxesList';
 import Pokemon from './components/Pokemon/Pokemon';
+import Form from './components/Form/Form';
+import UsersList from './components/User/UsersList';
 
 function App() {
   const [option, setOption] = useState<string>('welcome');
 
-  let component = <Users />;
+  let component = <UsersList />;
   switch (option) {
     case 'welcome':
-      component = <Users />;
+      component = <UsersList />;
       break;
     case 'counter':
       component = <Counter />;
       break;
     case 'checkboxes':
-      component = <CheckBoxes />;
+      component = <CheckBoxesList />;
       break;
     case 'pokemon':
       component = <Pokemon />;
+      break;
+    case 'form':
+      component = <Form />;
       break;
   }
 
@@ -31,11 +35,12 @@ function App() {
   return (
     <div className="App" style={{ fontFamily: 'Times New Roman' }}>
       <div style={{ marginBottom: '15px' }}>
-        <select className="select-box" onChange={handleSelection}>
+        <select onChange={handleSelection}>
           <option value="welcome">Welcome</option>
           <option value="counter">Counter</option>
           <option value="checkboxes">Checkboxes</option>
           <option value="pokemon">Pokemon</option>
+          <option value="form">Form</option>
         </select>
         <p style={{ margin: 0 }}>Option selected: {option}</p>
       </div>

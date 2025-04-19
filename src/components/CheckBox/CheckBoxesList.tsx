@@ -1,15 +1,12 @@
 import { ChangeEvent, useState } from 'react';
-import './CheckBoxes.css';
-import IInterest from '../../types/interest.type';
+import './CheckBoxesList.css';
 
-function CheckBoxes() {
-  const intitialInterest: IInterest = {
+function CheckBoxesList() {
+  const [interest, setInterests] = useState({
     coding: false,
     music: false,
     reading: false,
-  };
-
-  const [interest, setInterests] = useState<IInterest>(intitialInterest);
+  });
 
   const handleCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
     setInterests({
@@ -39,7 +36,7 @@ function CheckBoxes() {
         />
         <label htmlFor="all">All</label>
       </div>
-      <div className="checkbox-container">
+      <div>
         <input
           onChange={handleCheckBox}
           type="checkbox"
@@ -50,7 +47,7 @@ function CheckBoxes() {
         />
         <label htmlFor="coding">Coding</label>
       </div>
-      <div className="checkbox-container">
+      <div>
         <input
           onChange={handleCheckBox}
           type="checkbox"
@@ -61,7 +58,7 @@ function CheckBoxes() {
         />
         <label htmlFor="music">Music</label>
       </div>
-      <div className="checkbox-container">
+      <div>
         <input
           onChange={handleCheckBox}
           type="checkbox"
@@ -78,4 +75,4 @@ function CheckBoxes() {
   );
 }
 
-export default CheckBoxes;
+export default CheckBoxesList;

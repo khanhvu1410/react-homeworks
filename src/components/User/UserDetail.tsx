@@ -1,7 +1,7 @@
-import IUserInfo from '../../types/user.type';
-import './UserInfo.css';
+import UserInfo from '../../types/user.type';
+import './UserDetail.css';
 
-function UserInfo(props: IUserInfo) {
+function UserDetail(props: UserInfo) {
   const nameElement = <p className="name">Name: {props.name}</p>;
   const ageElement = <p className="age">Age: {props.age}</p>;
 
@@ -16,4 +16,4 @@ function UserInfo(props: IUserInfo) {
   );
 }
 
-export default UserInfo;
+export default UserDetail;

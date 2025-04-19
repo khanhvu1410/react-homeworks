@@ -1,7 +1,7 @@
-import IPokeInfo from '../../types/pokemon.type';
-import './PokeInfo.css';
+import PokeInfo from '../../types/pokemon.type';
+import './PokeDetail.css';
 
-function PokeInfo(props: IPokeInfo) {
+function PokeDetail(props: PokeInfo) {
   return (
     <div className="poke-box">
       <p className="poke-id">ID: {props.id}</p>
@@ -25,4 +25,4 @@ function PokeInfo(props: IPokeInfo) {
   );
 }
 
-export default PokeInfo;
+export default PokeDetail;
